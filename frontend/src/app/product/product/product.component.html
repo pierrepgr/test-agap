@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <h2>{{ titlePage }}</h2>
+        </div>
+    </div>
+
+    <form id="productRegistration" [formGroup]="form" (ngSubmit)="submit()">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2 required">
+                <label for="sku" class="control-label">SKU</label>
+                <input type="text" class="form-control" formControlName="sku">
+                <app-message [control]="form.get('sku')" error="required" text="Sku is mandatory and cannot be blank!"></app-message>
+                <app-message [control]="form.get('sku')" error="maxlength" text="Sku has maximum length of {{ form.get('sku').errors?.maxlength?.requiredLength }} characters!"></app-message>
+                <app-message [control]="form.get('sku')" error="minlength" text="Sku has minimum length of {{ form.get('sku').errors?.minlength?.requiredLength }} characters!"></app-message>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-6 col-xl-6 required">
+                <label for="name" class="control-label">Name</label>
+                <input type="text" class="form-control" formControlName="name">
+                <app-message [control]="form.get('name')" error="required" text="Name is mandatory and cannot be blank!"></app-message>
+                <app-message [control]="form.get('name')" error="maxlength" text="Name has maximum length of {{ form.get('name').errors?.maxlength?.requiredLength }} characters!"></app-message>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2 col-xl-2 required">
+                <label for="price" class="control-label">Price</label>
+                <input currencyMask type="text" class="form-control" formControlName="price" [options]="{ prefix: '€ ', thousands: '.', decimal: ',' }">
+                <app-message [control]="form.get('price')" error="required" text="Price is mandatory and cannot be blank!"></app-message>
+                <app-message [control]="form.get('price')" error="min" text="The minimum price is {{ form.get('price').errors?.min?.min }}!"></app-message>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
+                <button id="save" type="submit" form="productRegistration" class="btn btn-primary me-3" [disabled]="form.invalid">Save</button>
+                <a class="btn btn-danger" routerLink="/products">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>

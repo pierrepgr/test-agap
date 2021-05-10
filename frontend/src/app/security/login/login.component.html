@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row" [style.marginTop]="'30px'">
+        <div class="offset-md-4 col-md-4 offset-md-4">
+            <h3>Login</h3>
+
+            <form id="formSignIn" [formGroup]="form" (ngSubmit)="signIn()">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Email" formControlName="username">
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <button type="submit" form="formSignIn" class="btn btn-primary" [disabled]="form.invalid">Sign in</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

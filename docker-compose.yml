@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  mysql-8:
+    image: mysql:8.0.24
+    container_name: database
+    networks: 
+      - backend
+    ports: 
+      - 3306:3306
+    environment: 
+      MYSQL_DATABASE: agap
+      MYSQL_ROOT_PASSWORD: 12345
+  backend:
+    build: ./backend
+    container_name: backend
+    networks: 
+      - backend
+    ports: 
+      - 8080:8080
+    depends_on: 
+      - mysql-8
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - 4200:80
+networks:
+  backend:

@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <h2>Product Listing</h2>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                      <th scope="col" class="col-id-product-table">ID</th>
+                      <th scope="col" class="col-sku-product-table">SKU</th>
+                      <th scope="col" class="col-name-product-table">Name</th>
+                      <th scope="col" class="col-creation-date-time-product-table">Creation Date/Time</th>
+                      <th scope="col" class="col-price-product-table">Price</th>
+                      <th scope="col" class="col-actions-product-table"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="products">
+                    <tr *ngIf="!products.length">
+                      <th scope="row" colspan="6">
+                          No Products Found
+                      </th>
+                    </tr>
+                    <tr *ngFor="let product of products">
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.sku }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.creationDateTime | date: 'yyyy/MM/dd HH:mm' }}</td>
+                        <td>{{ product.price | currency: 'EUR' }}</td>
+                        <td>
+                            <a class="action-btn fi fi-archive me-1" title="Update" routerLink="/products/{{ product.id }}"></a>
+                            <button id="confirmDelete" class="action-btn fi fi-trash" title="Delete" (click)="confirmDelete(product.id, template)"></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2 col-xl-2">
+            <a id="newProduct" class="btn btn-primary" routerLink="/products/new">New</a>
+        </div>
+    </div>
+</div>
+
+<ng-template #template>
+    <div class="modal-body text-center">
+        <p>Would you really like to delete the product?</p>
+        <button id="yes" type="button" class="btn btn-primary" (click)="delete()" >Yes</button>
+        <button type="button" class="btn btn-danger ms-2" (click)="modalRef.hide()" >No</button>
+    </div>
+</ng-template>
+  
