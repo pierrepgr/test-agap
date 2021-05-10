@@ -1,7 +1,3 @@
-**Table of Contents**
-
-[TOC]
-
 ### Context
 
 Project provides software for listing, creating, updating and deleting products.
