@@ -7,7 +7,7 @@ export const environment = {
   baseURL: 'http://localhost:8080',
 
   tokenWhitelistedDomains: [/localhost:8080/],
-  tokenBlacklistedRoutes: [ /localhost:8080\/auth\/oauth\/token/ ] 
+  tokenBlacklistedRoutes: [ /localhost:8080\/oauth\/token/ ] 
 };
 
 /*
